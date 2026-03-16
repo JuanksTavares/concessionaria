@@ -47,3 +47,42 @@ As entidades são persistidas em um banco de dados H2 em memória durante o dese
    - **JDBC URL**: `jdbc:h2:mem:testdb`  
    - **Usuário**: `sa`  
    - **Senha**: (deixe em branco)
+
+
+## Configuração da API Key
+
+A aplicação possui uma configuração dedicada para leitura da chave de autenticação pelo arquivo `src/main/resources/application.properties`.
+
+Propriedade utilizada:
+
+```properties
+auth.api-key=concessionaria-api-key-2026
+```
+
+A leitura dessa propriedade é feita pela classe:
+
+```text
+src/main/java/com/grupo8/concessionaria/config/ApiKeyConfig.java
+```
+
+Essa classe centraliza o acesso à chave e permite que os demais componentes da autenticação consumam o valor configurado sem hardcode no código.
+
+### Chave inicial para testes
+
+A chave inicial cadastrada para testes no projeto é:
+
+```text
+concessionaria-api-key-2026
+```
+
+### Header padrão
+
+Para as rotas protegidas, envie a chave no header abaixo:
+
+```text
+x-api-key: concessionaria-api-key-2026
+```
+
+### Como alterar a chave
+
+Basta editar o valor da propriedade `auth.api-key` no arquivo `application.properties`.
